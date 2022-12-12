@@ -2,30 +2,29 @@ pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-interface IMultiplicationCalculator {
-    function multiply(uint256, uint256) external pure returns (uint256);
+interface IMinusCalculator {
+    function minus(uint256, uint256) external pure returns (uint256);
 }
 
-contract MultiplicationCalculatorProblem{
-    IMultiplicationCalculator public multiplicationCalculator;
+contract MinusCalculatorProblem{
+    IMinusCalculator public minusCalculator;
 
-    function setMultiplicationCalculator(address _multiplicationCalculator) public {
-        multiplicationCalculator = IMultiplicationCalculator(_multiplicationCalculator);
+    function setMinusCalculator(address _minusCalculator) public {
+        minusCalculator = IMinusCalculator(_minusCalculator);
     }
 }
 
-contract MyMultiplicationCalculator is IMultiplicationCalculator {
-    MultiplicationCalculatorProblem public multiplicationCalculatorProblem;
-
+contract MyMinusCalculator is IMinusCalculator {
+    MinusCalculatorProblem public minusCalculatorProblem;
     constructor(address _problemAddress) {
-        multiplicationCalculatorProblem = MultiplicationCalculatorProblem(_problemAddress);
+        minusCalculatorProblem = MinusCalculatorProblem(_problemAddress);
     }
 
     function setCalculator() public{
-        multiplicationCalculatorProblem.setMultiplicationCalculator(address(this));
+        minusCalculatorProblem.setMinusCalculator(address(this));
     }
 
-    function multiply(uint256 input1, uint256 input2) override public pure returns (uint256){
-        return input1 * input2;
+    function minus(uint256 input1, uint256 input2) override public pure returns (uint256){
+        return input1 - input2;
     }
 }

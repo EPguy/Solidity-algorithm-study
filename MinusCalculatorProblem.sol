@@ -1,30 +1,28 @@
 pragma solidity ^0.8.0;
 
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-interface IMinusCalculator {
-    function minus(uint256, uint256) external pure returns (uint256);
-}
+contract ERC20Init{
+    ERC20 public web3ojt;
 
-contract MinusCalculatorProblem{
-    IMinusCalculator public minusCalculator;
-
-    function setMinusCalculator(address _minusCalculator) public {
-        minusCalculator = IMinusCalculator(_minusCalculator);
+    function setWeb3ojt(address _web3ojt) public {
+        web3ojt = ERC20(_web3ojt);
     }
 }
 
-contract MyMinusCalculator is IMinusCalculator {
-    MinusCalculatorProblem public minusCalculatorProblem;
-    constructor(address _problemAddress) {
-        minusCalculatorProblem = MinusCalculatorProblem(_problemAddress);
+contract MyToken is ERC20 {
+    ERC20Init public eRC20Init;
+
+    constructor(string memory name, string memory symbol) ERC20(name, symbol){
+        _mint(msg.sender, 2000000000 * 10**uint(decimals()));
     }
 
-    function setCalculator() public{
-        minusCalculatorProblem.setMinusCalculator(address(this));
+    function setProblemContract(address _problemAddress) public{
+        eRC20Init = ERC20Init(_problemAddress);
     }
 
-    function minus(uint256 input1, uint256 input2) override public pure returns (uint256){
-        return input1 - input2;
+    function setTokenAddress() public{
+        eRC20Init.setWeb3ojt(address(this));
     }
 }

@@ -16,14 +16,6 @@ contract PlusCalculatorProblem{
 contract MyPlusCalculator is IPlusCalculator {
     PlusCalculatorProblem public plusCalculatorProblem;
 
-    constructor(address _problemAddress) {
-        plusCalculatorProblem = PlusCalculatorProblem(_problemAddress);
-    }
-
-    function setCalculator() public{
-        plusCalculatorProblem.setPlusCalculator(address(this));
-    }
-
     function plus(uint256 input1, uint256 input2) override public pure returns (uint256){
         return input1 + input2;
     }

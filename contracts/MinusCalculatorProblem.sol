@@ -16,13 +16,6 @@ contract MinusCalculatorProblem{
 
 contract MyMinusCalculator is IMinusCalculator {
     MinusCalculatorProblem public minusCalculatorProblem;
-    constructor(address _problemAddress) {
-        minusCalculatorProblem = MinusCalculatorProblem(_problemAddress);
-    }
-
-    function setCalculator() public{
-        minusCalculatorProblem.setMinusCalculator(address(this));
-    }
 
     function minus(uint256 input1, uint256 input2) override public pure returns (uint256){
         return input1 - input2;

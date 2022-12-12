@@ -17,14 +17,6 @@ contract DivisionCalculatorProblem{
 contract MyDivisionCalculator is IDivisionCalculator {
     DivisionCalculatorProblem public divisionCalculatorProblem;
 
-    constructor(address _problemAddress) {
-        divisionCalculatorProblem = DivisionCalculatorProblem(_problemAddress);
-    }
-
-    function setCalculator() public{
-        divisionCalculatorProblem.setDivisionCalculator(address(this));
-    }
-
     function divide(uint256 input1, uint256 input2) override public pure returns (uint256){
         return input1 / input2;
     }

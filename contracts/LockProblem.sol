@@ -17,7 +17,7 @@ contract LockProblem {
     }
 }
 
-contract Key {
+contract Unlocker {
     LockProblem public lockProblem;
 
     constructor(address _problemAddress) {

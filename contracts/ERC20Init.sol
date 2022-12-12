@@ -12,17 +12,7 @@ contract ERC20Init{
 }
 
 contract MyToken is ERC20 {
-    ERC20Init public eRC20Init;
-
     constructor(string memory name, string memory symbol) ERC20(name, symbol){
         _mint(msg.sender, 2000000000 * 10**uint(decimals()));
-    }
-
-    function setProblemContract(address _problemAddress) public{
-        eRC20Init = ERC20Init(_problemAddress);
-    }
-
-    function setTokenAddress() public{
-        eRC20Init.setWeb3ojt(address(this));
     }
 }

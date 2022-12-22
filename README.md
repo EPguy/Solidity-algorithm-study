@@ -9,7 +9,7 @@
    GOERLI_URL = https://eth-goerli.g.alchemy.com/v2/alchemy api key를 입력해주세요.
    PRIVATE_KEY = 여기엔 지갑 비밀키를 입력해주세요.
 ```
-5. 아래 명령어로 패키지 설치 후 컴파일합니다.
+5. 아래 명령어로 패키지 설치 후 컴파일 및 실행 합니다.
 ```
     npm install
     npx hardhat --network goerli run .\scripts\LockProblem.ts

@@ -14,13 +14,17 @@ contract SumOfArrayCompetitionProblem {
 }
 
 contract SumOfArraySolveContract is ISumOfArray {
-    function sum(uint[] memory _a) override public pure returns (uint) {
-        unchecked {
-            uint total = 0;
-            for(uint i = 0; i < _a.length; i++) {
-                total += _a[i];
+    function sum(uint[] memory _a) override public pure returns (uint total) {
+        assembly {
+            let len := mload(_a)
+            let dataElementLocation := add(_a, 0x20)
+            for
+                { let end := add(dataElementLocation, mul(len, 0x20)) }
+                lt(dataElementLocation, end)
+                { dataElementLocation := add(dataElementLocation, 0x20) }
+            {
+                total := add(total, mload(dataElementLocation))
             }
-            return total;
         }
     }
 }
